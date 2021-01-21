@@ -18,3 +18,28 @@ function MainCtrl() {
 angular
     .module('inspinia')
     .controller('MainCtrl', MainCtrl)
+
+
+
+
+angular.module('inspinia').controller('LoginCtrl', function($scope,$http){
+
+	$scope.user = {};
+
+	$scope.login = function(){
+		$http.post('https://erp.r85motos.cl/api/index.php/login', $scope.user).then(function(response){
+			
+			if(response.data == undefined)
+				return
+
+			data = response.data.success; 
+			console.log(data);
+
+			$http.get('https://erp.r85motos.cl/api/index.php/users/info?DOLIAPIKEY='+data.token, {headers:{'DOLIAPIKEY':data.token}}).then(function(response){
+				console.log(response);
+			});
+			
+		});
+	}
+
+})

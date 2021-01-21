@@ -7,7 +7,7 @@
  *
  */
 function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
-    $urlRouterProvider.otherwise("/index/main");
+    $urlRouterProvider.otherwise("/login");
 
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
@@ -15,6 +15,13 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
     });
 
     $stateProvider
+
+        .state('login', {
+            url: "/login",
+            templateUrl: "views/login.html",
+            controller: "LoginCtrl",
+            data: { pageTitle: 'Iniciar sesión' }
+        })
 
         .state('index', {
             abstract: true,
