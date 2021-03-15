@@ -1,6 +1,69 @@
 body {
 	background: url(../img/background.jpg);
 	background-size: cover;
-	background-attach: fixed;
+	background-attachment: fixed;
 	background-position: center right;
+}
+
+.logo-login{
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+}
+
+.btn-primary{
+	background-color: #cc6600;
+	border-color: #dd7700;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
+.btn-primary.active, .open .dropdown-toggle.btn-primary, 
+.btn-primary:active:focus, .btn-primary:active:hover, 
+.btn-primary.active:hover, .btn-primary.active:focus {
+    background-color: #dd7700;
+    border-color: #cc6600;
+}
+
+.form-control:focus, .single-line:focus {
+    border-color: #dd7700 !important;
+}
+
+.pace .pace-progress {
+    background: #dd7700;
+}
+
+
+.btn-primary.disabled,
+.btn-primary.disabled:hover,
+.btn-primary.disabled:focus,
+.btn-primary.disabled:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary[disabled]:active,
+.btn-primary.active[disabled],
+fieldset[disabled] .btn-primary,
+fieldset[disabled] .btn-primary:hover,
+fieldset[disabled] .btn-primary:focus,
+fieldset[disabled] .btn-primary:active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #c5741d;
+    border-color: #c55c1d;
+}
+
+.dark-bg{
+	background-color: rgba(50,50,50,0.9);
+}
+
+.top-navigation .navbar-brand {
+    background: #121212;
+}
+
+.top-navigation .nav > li.active > a {
+    color: #dd7700;
+}
+
+.sk-spinner-three-bounce div{
+	color: #cc6600;
 }

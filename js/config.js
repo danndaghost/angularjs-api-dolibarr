@@ -4,25 +4,24 @@
  * Inspinia theme use AngularUI Router to manage routing and views
  * Each view are defined as state.
  * Initial there are written state for all view in theme.
- *
  */
-function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+function config($stateProvider, $urlRouterProvider,$httpProvider, $ocLazyLoadProvider) {
     $urlRouterProvider.otherwise("/login");
 
+    //agregar header token
+    $httpProvider.interceptors.push('httpRequestInterceptor');
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
         debug: false
     });
 
     $stateProvider
-
         .state('login', {
             url: "/login",
             templateUrl: "views/login.html",
             controller: "LoginCtrl",
             data: { pageTitle: 'Iniciar sesión' }
         })
-
         .state('index', {
             abstract: true,
             url: "/index",
@@ -43,8 +42,6 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             templateUrl: "views/dashboard.html",
             data: { pageTitle: 'Tablero de reportes' }
         })
-
-
         .state('app', {
             abstract: true,
             url: "/app",
@@ -55,11 +52,31 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             templateUrl: "views/app/home.html",
             data: { pageTitle: 'Home' }
         })
-
+        .state('app.proposals', {
+            url: "/proposals",
+            templateUrl: "views/app/proposals.html",
+            data: { pageTitle: 'Proposals' }
+        })
 }
+
+function httpRequestInterceptor($window){
+    return {
+        request: function (config) {
+
+            if($window.sessionStorage.getItem('token')){
+                config.headers['DOLAPIKEY'] = $window.sessionStorage.getItem('token');
+            }
+            return config;
+        }
+    };
+}
+
 angular
     .module('inspinia')
     .config(config)
-    .run(function($rootScope, $state) {
+    .factory('httpRequestInterceptor', httpRequestInterceptor);
+    /*.run(function($rootScope, $state) {
         $rootScope.$state = $state;
-    });
+    });*/
+
+
